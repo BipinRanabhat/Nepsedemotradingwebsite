@@ -1,11 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #0b0e11;
+  --color-bg-alt: #0d1117;
+  --color-card: #161b22;
+  --color-card-alt: #1e2329;
+  --color-surface: #21262d;
+  --color-border: #21262d;
+  --color-border-strong: #30363d;
+
+  --color-content: #e6edf3;
+  --color-content-dim: #9ba4b0;
+  --color-content-mute: #7d8590;
+
+  --color-accent: #f0b90b;
+  --color-accent-deep: #e5a800;
+  --color-accent-soft: #f0b90b14;
+
+  --color-gain: #0ecb81;
+  --color-loss: #f6465d;
+  --color-info: #5b8ef7;
+
+  --font-sans: var(--font-dm-sans);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #0b0e11;
+  color: #e6edf3;
+}
+
+/* Subtle radial glow utility for hero backgrounds */
+.glow-accent {
+  background-image: radial-gradient(
+    600px circle at 50% 0%,
+    rgba(240, 185, 11, 0.1),
+    transparent 70%
+  );
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ffd14f 0%, #f0b90b 50%, #c8930a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
