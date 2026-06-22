@@ -69,6 +69,17 @@ body {
   75%, 100% { transform: scale(2); opacity: 0; }
 }
 
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(14px, -18px) scale(1.06); }
+  66%       { transform: translate(-10px, 10px) scale(0.95); }
+}
+
 /* ── Animation utilities ── */
 
 .animate-float      { animation: float 4s ease-in-out infinite; }
@@ -77,6 +88,11 @@ body {
 .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
 .animate-gradient   { animation: gradient-shift 6s ease infinite; background-size: 200% 200%; }
 .animate-ping-slow  { animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.animate-ticker     { animation: ticker 38s linear infinite; will-change: transform; }
+.animate-ticker:hover { animation-play-state: paused; }
+.animate-orb        { animation: float-orb 9s ease-in-out infinite; }
+.animate-orb-2      { animation: float-orb 12s ease-in-out infinite reverse; }
+.animate-orb-3      { animation: float-orb 15s ease-in-out infinite 2s; }
 
 /* Stagger delays for entrance animations */
 .stagger-1 { animation-delay: 0.05s; }

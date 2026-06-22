@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import AppPreview from "@/components/AppPreview";
+import Ticker from "@/components/Ticker";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "NEPSE Demo Trading — Practice NEPSE Without Risk",
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
 
 const stats = [
   { value: "You Choose", label: "Set your own virtual balance" },
-  { value: "Live", label: "Real NEPSE market prices" },
-  { value: "100%", label: "Free, forever" },
+  { value: "Live",       label: "Real NEPSE market prices" },
+  { value: "100%",       label: "Free, forever" },
 ];
 
 const features = [
@@ -48,11 +50,26 @@ const features = [
 
 const steps = [
   { step: "01", title: "Sign Up & Set Your Balance", desc: "Register with your email and choose your virtual starting balance — from NPR 10,000 up to 1 Crore. No credit card, ever." },
-  { step: "02", title: "Search & Buy Stocks", desc: "Browse NEPSE-listed companies and invest your virtual balance across any stocks you like." },
-  { step: "03", title: "Track & Climb", desc: "Monitor your portfolio, learn from every trade, and rise up the leaderboard." },
+  { step: "02", title: "Search & Buy Stocks",        desc: "Browse NEPSE-listed companies and invest your virtual balance across any stocks you like." },
+  { step: "03", title: "Track & Climb",              desc: "Monitor your portfolio, learn from every trade, and rise up the leaderboard." },
 ];
 
-const staggerClass = ["stagger-1", "stagger-2", "stagger-3", "stagger-4", "stagger-5", "stagger-6"] as const;
+const leaderboard = [
+  { rank: 1, name: "Bikash T.",  city: "Kathmandu", ret: "+42.8%", val: "1,42,800" },
+  { rank: 2, name: "Sujata R.", city: "Pokhara",    ret: "+38.1%", val: "1,38,100" },
+  { rank: 3, name: "Dipak M.",  city: "Lalitpur",   ret: "+31.5%", val: "1,31,500" },
+  { rank: 4, name: "Anita K.",  city: "Bhaktapur",  ret: "+27.2%", val: "1,27,200" },
+  { rank: 5, name: "Roshan S.", city: "Chitwan",    ret: "+24.9%", val: "1,24,900" },
+];
+
+const rankColors   = ["text-accent", "text-gray-400", "text-orange-400", "text-content-mute", "text-content-mute"];
+const avatarColors = [
+  "bg-accent/20 text-accent",
+  "bg-info/20 text-info",
+  "bg-gain/20 text-gain",
+  "bg-purple-500/20 text-purple-400",
+  "bg-pink-500/20 text-pink-400",
+];
 
 export default function HomePage() {
   return (
@@ -60,12 +77,16 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden glow-accent noise">
         <div className="absolute inset-0 grid-bg opacity-60 pointer-events-none" aria-hidden />
-        {/* secondary cool-blue glow for depth */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(600px circle at 10% 60%, rgba(91,142,247,0.06), transparent 70%)" }}
           aria-hidden
         />
+        {/* slow-drifting background orbs */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-accent/6 blur-3xl pointer-events-none animate-orb" aria-hidden />
+        <div className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full bg-info/5 blur-3xl pointer-events-none animate-orb-2" aria-hidden />
+        <div className="absolute -bottom-8 left-1/2 w-64 h-64 rounded-full bg-gain/4 blur-3xl pointer-events-none animate-orb-3" aria-hidden />
+
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 grid lg:grid-cols-2 gap-12 items-center">
           {/* copy */}
           <div className="text-center lg:text-left animate-fade-in-up">
@@ -95,7 +116,6 @@ export default function HomePage() {
                 />
               </a>
             </div>
-            {/* micro-trust badges */}
             <div className="mt-5 flex items-center gap-4 justify-center lg:justify-start flex-wrap">
               <span className="flex items-center gap-1.5 text-[11px] text-content-mute">
                 <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -112,23 +132,22 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* phone mockup */}
           <div className="flex justify-center lg:justify-end">
             <AppPreview />
           </div>
         </div>
       </section>
 
+      {/* ── NEPSE Stock Ticker ── */}
+      <Ticker />
+
       {/* ── Stats band ── */}
       <section className="py-2 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
+        <ScrollReveal className="max-w-5xl mx-auto">
           <div className="glass-card gradient-border py-8 px-4">
             <div className="grid grid-cols-3">
               {stats.map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`relative text-center px-2 animate-fade-in-up ${staggerClass[i * 2]}`}
-                >
+                <div key={s.label} className="relative text-center px-2">
                   {i > 0 && (
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-8 bg-linear-to-b from-transparent via-border-strong to-transparent" aria-hidden />
                   )}
@@ -138,13 +157,13 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── Features ── */}
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14 animate-fade-in-up">
+          <ScrollReveal className="text-center mb-14">
             <p className="text-accent text-xs font-bold uppercase tracking-widest mb-3">Why NEPSE Demo Trading</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-content tracking-tight mb-3">
               Everything You Need to Practice
@@ -152,21 +171,21 @@ export default function HomePage() {
             <p className="text-content-dim max-w-xl mx-auto">
               Purpose-built for the Nepal Stock Exchange — not a generic stock simulator.
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f, i) => (
-              <div
+              <ScrollReveal
                 key={f.title}
-                className={`group p-6 rounded-2xl glass-card glass-card-hover gradient-border animate-fade-in-up ${staggerClass[i]}`}
+                delay={i * 70}
+                className="group p-6 rounded-2xl glass-card glass-card-hover gradient-border"
               >
                 <div className="relative w-12 h-12 rounded-xl bg-accent-soft border border-accent/20 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                  {/* bloom on hover */}
                   <span className="absolute inset-0 rounded-xl bg-accent/5 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden />
                   <span className="relative">{f.icon}</span>
                 </div>
                 <h3 className="font-bold text-content text-lg mb-2">{f.title}</h3>
                 <p className="text-sm text-content-dim leading-relaxed">{f.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -175,37 +194,93 @@ export default function HomePage() {
       {/* ── How it works ── */}
       <section className="py-20 px-4 sm:px-6 bg-bg-alt border-y border-border">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14 animate-fade-in-up">
+          <ScrollReveal className="text-center mb-14">
             <p className="text-accent text-xs font-bold uppercase tracking-widest mb-3">Get Started in Minutes</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-content tracking-tight">How It Works</h2>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
-            {/* desktop connector line */}
             <div className="hidden sm:block absolute top-10 left-[36%] right-[36%] h-px border-t-2 border-dashed border-border-strong pointer-events-none" aria-hidden />
             {steps.map((s, i) => (
-              <div
+              <ScrollReveal
                 key={s.step}
-                className={`glass-card gradient-border p-6 text-center sm:text-left animate-fade-in-up ${staggerClass[i]}`}
+                delay={i * 110}
+                className="glass-card gradient-border p-6 text-center sm:text-left"
               >
-                {/* small numbered badge */}
                 <div className="w-8 h-8 rounded-full bg-accent/15 border border-accent/30 text-accent text-xs font-bold flex items-center justify-center mb-3 mx-auto sm:mx-0">
                   {i + 1}
                 </div>
-                {/* ghost large number */}
                 <span className="shimmer-text text-5xl font-extrabold block mb-2 select-none opacity-25">{s.step}</span>
                 <h3 className="font-bold text-content text-lg mb-2">{s.title}</h3>
                 <p className="text-sm text-content-dim leading-relaxed">{s.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── Leaderboard preview ── */}
+      <section className="py-20 px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <ScrollReveal className="text-center mb-10">
+            <p className="text-accent text-xs font-bold uppercase tracking-widest mb-3">Live Competition</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-content tracking-tight mb-3">
+              Top Traders This Month
+            </h2>
+            <p className="text-content-dim max-w-md mx-auto">
+              Compete with investors nationwide. Rise to #1 with smart trades.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={140} className="glass-card gradient-border overflow-hidden">
+            <div className="flex items-center px-5 py-3 border-b border-border text-[11px] text-content-mute font-semibold uppercase tracking-wider">
+              <span className="w-10 shrink-0">Rank</span>
+              <span className="flex-1">Trader</span>
+              <span className="w-28 text-right hidden sm:block">Portfolio (NPR)</span>
+              <span className="w-20 text-right">Return</span>
+            </div>
+
+            {leaderboard.map((t, i) => (
+              <div
+                key={t.rank}
+                className={`flex items-center px-5 py-3.5 border-b border-border/60 last:border-0 transition-colors hover:bg-white/[0.025] ${i === 0 ? "bg-accent/[0.03]" : ""}`}
+              >
+                <span className={`w-10 shrink-0 text-sm font-extrabold tabular-nums ${rankColors[i]}`}>
+                  #{t.rank}
+                </span>
+                <div className="flex-1 flex items-center gap-3 min-w-0">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${avatarColors[i]}`}>
+                    {t.name.split(" ").map(n => n[0]).join("")}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-content leading-none">{t.name}</p>
+                    <p className="text-[11px] text-content-mute mt-0.5">{t.city}</p>
+                  </div>
+                </div>
+                <span className="w-28 text-right text-sm text-content-dim tabular-nums hidden sm:block">{t.val}</span>
+                <span className="w-20 text-right text-sm font-bold text-gain tabular-nums">{t.ret}</span>
+              </div>
+            ))}
+
+            <div className="px-5 py-4 text-center bg-bg-alt/60">
+              <p className="text-xs text-content-mute">
+                Your current rank:{" "}
+                <span className="text-accent font-bold">#1,247</span>
+                {" · "}
+                <a href="#download" className="text-accent underline hover:text-accent-deep transition-colors">
+                  Download the app to climb →
+                </a>
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* ── Final CTA ── */}
       <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto rounded-3xl glass-card gradient-border animate-pulse-glow p-10 sm:p-14 text-center relative overflow-hidden">
+        <ScrollReveal
+          className="max-w-4xl mx-auto rounded-3xl glass-card gradient-border animate-pulse-glow p-10 sm:p-14 text-center relative overflow-hidden"
+        >
           <div className="absolute inset-0 glow-accent opacity-70 pointer-events-none" aria-hidden />
-          {/* decorative bottom-right blob */}
           <div className="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-accent/8 blur-3xl pointer-events-none" aria-hidden />
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-content tracking-tight mb-4">
@@ -220,7 +295,6 @@ export default function HomePage() {
             >
               Download the App — It&apos;s Free
             </a>
-            {/* social proof */}
             <p className="mt-5 text-[11px] text-content-mute italic">
               <span className="text-accent not-italic">★★★★★</span>{" "}
               &ldquo;Finally a NEPSE simulator that uses real prices!&rdquo; — Bikram, Kathmandu
@@ -232,7 +306,7 @@ export default function HomePage() {
               <Link href="/privacy" className="text-content-dim underline hover:text-accent">Privacy Policy</Link>.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

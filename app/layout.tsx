@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CursorSpotlight from "@/components/CursorSpotlight";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-bg text-content font-sans selection:bg-accent/30">
+        <CursorSpotlight />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
