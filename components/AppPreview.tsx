@@ -11,13 +11,41 @@ export default function AppPreview() {
   ];
 
   return (
-    <div className="relative mx-auto w-[280px]">
-      {/* glow behind phone */}
-      <div className="absolute -inset-8 bg-accent/10 blur-3xl rounded-full" aria-hidden />
+    <div className="relative mx-auto w-[280px] animate-float">
+      {/* warm gold glow */}
+      <div className="absolute -inset-10 bg-accent/12 blur-3xl rounded-full pointer-events-none" aria-hidden />
+      {/* cool blue glow at bottom */}
+      <div className="absolute -bottom-8 left-1/4 right-1/4 h-32 bg-info/10 blur-2xl rounded-full pointer-events-none" aria-hidden />
 
-      <div className="relative rounded-[2.4rem] border border-border-strong bg-bg p-2.5 shadow-2xl shadow-black/60">
-        {/* notch */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-5 bg-bg rounded-full border border-border-strong z-10" />
+      {/* floating gain chip — top right */}
+      <div
+        className="absolute -top-4 -right-8 glass-card px-3 py-1.5 flex items-center gap-1.5 animate-float z-20"
+        style={{ animationDelay: "0.8s", borderRadius: "999px" }}
+      >
+        <span className="relative flex w-2 h-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gain opacity-60" />
+          <span className="relative inline-flex rounded-full w-2 h-2 bg-gain" />
+        </span>
+        <span className="text-[10px] font-bold text-gain">+8.74%</span>
+      </div>
+
+      {/* floating trade chip — bottom left */}
+      <div
+        className="absolute -bottom-2 -left-10 glass-card px-3 py-1.5 flex items-center gap-1.5 animate-float z-20"
+        style={{ animationDelay: "1.6s", borderRadius: "999px" }}
+      >
+        <span className="text-[10px] font-bold text-accent">NABIL</span>
+        <span className="text-[10px] text-content-mute">Bought</span>
+      </div>
+
+      {/* phone frame */}
+      <div className="relative gradient-border rounded-[2.4rem] bg-bg p-2.5"
+           style={{ boxShadow: "0 32px 80px -12px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.04)" }}>
+        {/* Dynamic Island notch */}
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#070a0d] rounded-full z-10" />
+
+        {/* screen reflection highlight */}
+        <div className="absolute top-2.5 left-2.5 right-2.5 h-1/2 bg-gradient-to-b from-white/[0.04] to-transparent rounded-t-[1.9rem] pointer-events-none z-10" aria-hidden />
 
         <div className="rounded-[1.9rem] overflow-hidden bg-bg-alt">
           {/* status bar */}
@@ -49,6 +77,13 @@ export default function AppPreview() {
                   <stop offset="0%" stopColor="#0ECB81" stopOpacity="0.35" />
                   <stop offset="100%" stopColor="#0ECB81" stopOpacity="0" />
                 </linearGradient>
+                <filter id="line-glow" x="-20%" y="-50%" width="140%" height="200%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
               </defs>
               <path
                 d="M0,52 L26,46 L52,50 L78,38 L104,42 L130,28 L156,32 L182,20 L208,24 L234,12 L260,16 L260,70 L0,70 Z"
@@ -61,6 +96,7 @@ export default function AppPreview() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                filter="url(#line-glow)"
               />
             </svg>
           </div>
