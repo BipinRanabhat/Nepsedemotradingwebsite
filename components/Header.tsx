@@ -84,8 +84,11 @@ export default function Header() {
           {/* CTA */}
           <a
             href="/#download"
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-accent text-bg text-sm font-bold hover:bg-accent-deep btn-glow"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full btn-primary btn-glow text-sm font-bold"
           >
+            <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
             Get the App
           </a>
 
@@ -128,9 +131,12 @@ export default function Header() {
           <a
             href="/#download"
             onClick={() => setOpen(false)}
-            className="mt-2 px-4 py-2.5 rounded-lg bg-accent text-bg text-sm font-bold text-center hover:bg-accent-deep btn-glow"
+            className="mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl btn-primary btn-glow text-sm font-bold"
           >
-            ↓ Get the App
+            <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Get the App
           </a>
         </div>
       </div>

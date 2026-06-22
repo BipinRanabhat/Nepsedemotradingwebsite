@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import AppPreview from "@/components/AppPreview";
 import Ticker from "@/components/Ticker";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -105,15 +104,42 @@ export default function HomePage() {
               Choose your own virtual starting balance — anywhere from NPR 10,000 up to 1 Crore — and practice buying and selling real Nepal Stock Exchange stocks. Build confidence and skill before you invest a single real rupee.
             </p>
             <div id="download" className="flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
-              <a href="#" className="inline-block btn-glow rounded-xl active:scale-100">
-                <Image
-                  src="/google-play-badge.png"
-                  alt="Get it on Google Play"
-                  width={194}
-                  height={75}
-                  className="h-14.5 w-auto"
-                  priority
-                />
+              {/* Google Play CTA */}
+              <a
+                href="#"
+                className="group inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl btn-primary btn-glow"
+              >
+                <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M3.18 23.76c.39.22.83.24 1.24.04L18.36 12 4.42.2C4.01 0 3.57.02 3.18.24 2.41.68 2 1.52 2 2.5v19c0 .98.41 1.82 1.18 2.26z"/>
+                  <path d="M20.2 10.3l-2.83-1.6L13.9 12l3.47 3.3 2.83-1.6c.8-.45.8-1.55 0-2z" opacity=".7"/>
+                  <path d="M4.42.2 13.9 12 4.42 23.8 18.36 12z" opacity=".4"/>
+                </svg>
+                <div className="text-left leading-tight">
+                  <p className="text-[10px] font-semibold opacity-70 tracking-wide mb-0.5">GET IT ON</p>
+                  <p className="text-sm font-extrabold tracking-tight">Google Play</p>
+                </div>
+                <svg
+                  className="w-3.5 h-3.5 ml-1 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
+              </a>
+
+              {/* App Store — coming soon */}
+              <a
+                href="#"
+                className="group inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl btn-outline btn-glow cursor-default"
+                tabIndex={-1}
+                aria-disabled="true"
+              >
+                <svg className="w-5 h-5 shrink-0 opacity-60" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <div className="text-left leading-tight">
+                  <p className="text-[10px] font-semibold tracking-wide mb-0.5">COMING SOON</p>
+                  <p className="text-sm font-extrabold tracking-tight">App Store</p>
+                </div>
               </a>
             </div>
             <div className="mt-5 flex items-center gap-4 justify-center lg:justify-start flex-wrap">
@@ -291,9 +317,18 @@ export default function HomePage() {
             </p>
             <a
               href="#download"
-              className="inline-block px-8 py-3.5 rounded-xl bg-accent text-bg font-bold hover:bg-accent-deep btn-glow"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl btn-primary btn-glow text-base font-extrabold"
             >
+              <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
               Download the App — It&apos;s Free
+              <svg
+                className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+              </svg>
             </a>
             <p className="mt-5 text-[11px] text-content-mute italic">
               <span className="text-accent not-italic">★★★★★</span>{" "}
